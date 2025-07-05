@@ -2,8 +2,9 @@
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 import Header from "../Header/idex"
+import SideMenu from "../SideMenu"
  
- export default function PageWrapper({ children }) {
+ export default function PageWrapper({ children,title, description }) {
     const router = useRouter()
 
 
@@ -29,9 +30,21 @@ import Header from "../Header/idex"
 
     return (
         <div className ="flex w-full min-h-screen flex-col">
-            <Header />
-            <div className="w-full h-full p-8">
-                {children }
+            <div className="w-full h-full flex ">
+                <SideMenu />
+                <div className="w-full ml-[300px] h-full p-8">
+                    <div className="w-full h-full flex flex-col gap-4">
+                        <div className="w-full flex flex-col gap-2">
+                            <h1 className="text-2xl font-bold">
+                                {title}
+                            </h1>
+                            <p className="text-gray-500">
+                                {description}
+                            </p>
+                        </div>
+                    </div>
+                    {children }
+                </div>
             </div>
         </div>
     )

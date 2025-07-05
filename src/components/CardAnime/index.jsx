@@ -1,7 +1,9 @@
  import { useState } from 'react';
+import ModalDetailsAnime from '../ModalDetailsAnime';
 
 export default function CardAnime({ anime }) {
     const [isImageError, setIsImageError] = useState(false);
+    const [openModal,setOpenModal] = useState(false);
 
     const handleImageError = () => {
         setIsImageError(true);
@@ -103,13 +105,20 @@ export default function CardAnime({ anime }) {
                     <button className="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-3 rounded-md transition-colors duration-200">
                         Ver Detalhes
                     </button>
-                    <button className="bg-gray-100 hover:bg-gray-200 text-gray-700 p-2 rounded-md transition-colors duration-200">
+                    <button
+                    onClick={() => setOpenModal(true)}                     
+                       className="bg-gray-100 hover:bg-gray-200 text-gray-700 p-2 rounded-md transition-colors duration-200">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                     </button>
                 </div>
             </div>
+            <ModalDetailsAnime
+              isOpen={openModal}
+              onClose={() => setOpenModal(false)
+              anime={anime}}
+            />
         </div>
     );
 }
